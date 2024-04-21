@@ -7,7 +7,7 @@ function Users() {
 
     useEffect(() => {
         async function temp() {
-            const resp = await getJson('https://jsonplaceholder.typicode.com/users')
+            const resp = await getJson('https://jsonplaceholder.typicode.com/users?_embed=posts')
             setUsers(resp)
         }
 
@@ -24,12 +24,16 @@ function Users() {
                     <span className="user-list-span">
                         Username
                     </span>
+                    <span className="user-list-span">
+                        Total Posts
+                    </span>
                 </div>
                 {users.length > 0 ?
                     (
-                        users.map((item, index) => <a key={index} className='table-line' href={'./user.html?id=' + item.id}>
+                        users.map((item, index) => <a key={index} className='table-line' href={'./user?id=' + item.id}>
                             <span className='user-list-span'>{item.name}</span>
                             <span className='user-list-span'>{item.username}</span>
+                            <span className='user-list-span'>{item.posts.length}</span>
                         </a>)
                     )
                     : (<h2>Loading...</h2>)}

@@ -8,6 +8,8 @@ $dark-line-color: hsl(202, 100%, 92%);
 $adjusted-white: hsl(0, 0%, 20%);
 $reading-white: hsl(187, 100%, 90%);
 
+@import "~react-image-gallery/styles/scss/image-gallery.scss";
+
 body {
     font-family: "Montserrat", sans-serif;
     min-height: 1200px;
@@ -36,22 +38,23 @@ body {
 #sticky-menu {
     position: sticky;
     top: 10px;
+    left: 10px;
     background-color: $dark-line-color;
     border: solid 2px $border-color;
-    width: 70px;
-    height: 70px;
-    border-radius: 50px;
+    width: 120px;
+    height: 120px;
+    border-radius: 10px;
     display: flex;
-    justify-content: center;
+    justify-content: start;
     align-items: center;
 
-    .index-button {
-        font-size: 16px;
-        font-weight: 600;
-        text-align: center;
-        color: $adjusted-white;
-        text-decoration: none;
-    }
+    // .index-button {
+    //     font-size: 16px;
+    //     font-weight: 600;
+    //     text-align: center;
+    //     color: $adjusted-white;
+    //     text-decoration: none;
+    // }
 }
 
 header {
@@ -63,6 +66,15 @@ main {
     display: flex;
     flex-direction: column;
     align-items: center;
+
+    .gallery-container {
+        width: 90%;
+        margin-top: 50px;
+        margin-bottom: 50px;
+        border: solid 4px orange;
+        border-radius: 15px;
+        background-color: rgb(65, 65, 65);
+    }
 
     #user-post-title {
         color: $adjusted-white;
@@ -124,7 +136,7 @@ main {
             color: black;
 
             .user-list-span {
-                width: 50%;
+                width: 100%;
                 padding: 5px 20px 5px 20px;
             }
         }

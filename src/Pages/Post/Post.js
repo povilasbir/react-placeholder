@@ -33,24 +33,29 @@ function Post() {
         <main>
             {(Object.keys(post).length > 0 && Object.keys(user).length > 0) && (<div id="post-wrap">
                 <h3 id="post-title">{post.title} | Post has {comments.length} comments.</h3>
-                <a id="post-username" href={'./user.html?id=' + user.id}>By: {user.username}</a>
+                <a id="post-username" href={'./user?id=' + user.id}>By: {user.username}</a>
                 <p id="post-content">{post.body}</p>
+                <a href={'./posts?id=' + user.id}>Other user posts</a>
             </div>)}
             <h3 id="user-post-title">Post Comments</h3>
-            <div class="users-wrap" id="user-posts-wrap">
-                <div class="table-line title-line">
-                    <span class="user-list-span">
-                        User
+            <div className="users-wrap" id="user-posts-wrap">
+                <div className="table-line title-line">
+                    <span className="user-list-span">
+                        Comment Title
                     </span>
-                    <span class="user-list-span">
+                    <span className="user-list-span">
                         Comment
+                    </span>
+                    <span className="user-list-span">
+                        Email
                     </span>
                 </div>
                 {(comments.length > 0 && Object.keys(user).length > 0) ?
                     (
-                        comments.map((item, index) => <a key={index} className='table-line' href={'./user.html?id=' + user.id}>
+                        comments.map((item, index) => <a key={index} className='table-line' href={'./user?id=' + user.id}>
                             <span className='user-list-span'>{item.name}</span>
                             <span className='user-list-span'>{item.body}</span>
+                            <span className='user-list-span'>{item.email}</span>
                         </a>)
                     )
                     : (<h2>Loading...</h2>)}

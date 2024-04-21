@@ -20,18 +20,18 @@ function Albums() {
 
     return (
         <main>
-            <div class="users-wrap" id="users-wrap">
-                <div class="table-line title-line">
-                    <span class="user-list-span">
+            <div className="users-wrap" id="users-wrap">
+                <div className="table-line title-line">
+                    <span className="user-list-span">
                         Album Title
                     </span>
-                    <span class="user-list-span">
+                    <span className="user-list-span">
                         Author
                     </span>
                 </div>
                 {albums.length > 0 ?
                     (
-                        albums.map((item, index) => <a key={index} className='table-line' href={'./album.html?id=' + item.id}>
+                        albums.map((item, index) => <a key={index} className='table-line' href={'./album?id=' + item.id}>
                             <span className='user-list-span'>{item.title}</span>
                             <span className='user-list-span'>{users.find(user => user.id == item.userId).name}</span>
                         </a>)

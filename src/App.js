@@ -8,24 +8,21 @@ import Main from './Pages/Main/Main';
 import Albums from './Pages/Albums/Albums';
 import Album from './Pages/Album/Album';
 import './style.css'
+import StickyMenu from './Components/StickyMenu/StickyMenu';
 
 function App() {
   return (
     <>
-      <div id="sticky-menu">
-        <a href="/" class="index-button">
-          {'<'}
-        </a>
-      </div>
+      <StickyMenu />
 
       <Routes>
         <Route path='/' element={<Main />} />
         <Route path='/users' element={<Users />} />
-        <Route path='/user.html' element={<User />} />
+        <Route path='/user' element={<User />} />
         <Route path='/posts' element={<Posts />} />
-        <Route path='/post.html' element={<Post />} />
+        <Route path='/post' element={<Post />} />
         <Route path='/albums' element={<Albums />} />
-        <Route path='/album.html' element={<Album />} />
+        <Route path='/album' element={<Album />} />
         <Route path='*' element={
           <div>
             <h1>404: Page not found</h1>

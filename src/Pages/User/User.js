@@ -2,6 +2,7 @@ import { React, useState, useEffect } from 'react'
 import { getJson } from '../../Scripts/main_functions'
 import { useSearchParams } from 'react-router-dom'
 import profile from '../../Images/profile.webp'
+import PostsList from '../../Components/PostsList/PostsList'
 
 function User() {
 
@@ -10,18 +11,25 @@ function User() {
 
     const [user, setUser] = useState({})
     const [posts, setPosts] = useState([])
+    const [albums, setAlbums] = useState([])
 
     useEffect(() => {
         async function temp() {
             const userRes = await getJson('https://jsonplaceholder.typicode.com/users/' + id)
-            const postsRes = await getJson('https://jsonplaceholder.typicode.com/posts')
+            const postsRes = await getJson('https://jsonplaceholder.typicode.com/posts?_embed=comments')
+            const albumsRes = await getJson('https://jsonplaceholder.typicode.com/albums')
 
             const userPosts = postsRes.filter(post => {
                 return post.userId == id
             })
 
+            const userAlbums = albumsRes.filter(album => {
+                return album.userId == id
+            })
+
             setUser(userRes)
             setPosts(userPosts)
+            setAlbums(userAlbums)
         }
 
         temp()
@@ -36,7 +44,7 @@ function User() {
                     <h4 className="secondary-info" id="full-name">Full Name: {user.name} | Has {posts.length} total posts.</h4>
                     <h4 className="secondary-info" id="email">Email: {user.email}</h4>
                     <h5 className="address-title">Address Information:</h5>
-                    <div className="address-wrap">
+                    <a href={`https://www.google.com/maps/place/${user.address.geo.lat},${user.address.geo.lng}`} className="address-wrap">
                         <span className="address-secondary" id="street">
                             Street: {user.address.street}
                         </span>
@@ -57,28 +65,42 @@ function User() {
                                 Longitude: {user.address.geo.lng}
                             </span>
                         </div>
+                    </a>
+                    <div>
+                        <ul>
+                            <li>
+                                Phone number: {user.phone}
+                            </li>
+                            <li>
+                                Website: {user.website}
+                            </li>
+                            <li>
+                                Company name: {user.company.name}
+                            </li>
+                        </ul>
                     </div>
                 </div>)}
                 <img src={profile} alt="Profile Image" className="profile-img" />
             </div>
             <div className="users-wrap" id="user-posts-wrap">
+                {posts.length > 0 && (<PostsList posts={posts} />)}
+            </div>
+
+            <div className="users-wrap" id="user-posts-wrap">
                 <div className="table-line title-line">
                     <span className="user-list-span">
-                        Post Title
-                    </span>
-                    <span className="user-list-span">
-                        Post
+                        Album Title
                     </span>
                 </div>
-                {posts.length > 0 ?
+                {albums.length > 0 ?
                     (
-                        posts.map((item, index) => <a key={index} className='table-line' href={'./post.html?id=' + item.id}>
+                        albums.map((item, index) => <a key={index} className='table-line' href={'./album?id=' + item.id}>
                             <span className='user-list-span'>{item.title}</span>
-                            <span className='user-list-span'>{item.body}</span>
                         </a>)
                     )
                     : (<h2>Loading...</h2>)}
             </div>
+
         </main>
     )
 }
