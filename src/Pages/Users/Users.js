@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { getJson } from '../../Scripts/main_functions.js'
+import { API_URL } from '../../Scripts/config.js'
 
 function Users() {
 
@@ -7,7 +8,8 @@ function Users() {
 
     useEffect(() => {
         async function temp() {
-            const resp = await getJson('https://jsonplaceholder.typicode.com/users?_embed=posts')
+            // const resp = await getJson('https://jsonplaceholder.typicode.com/users?_embed=posts')
+            const resp = await getJson(API_URL + '/users?_embed=posts')
             setUsers(resp)
         }
 

@@ -1,8 +1,8 @@
 import { React, useState, useEffect } from 'react'
 import { getJson } from '../../Scripts/main_functions'
-import { useSearchParams } from 'react-router-dom'
-
+import { useSearchParams, Link } from 'react-router-dom'
 import ImageGallery from "react-image-gallery";
+import { API_URL } from '../../Scripts/config';
 
 function Album() {
 
@@ -18,9 +18,9 @@ function Album() {
 
     useEffect(() => {
         async function temp() {
-            const albumRes = await getJson('https://jsonplaceholder.typicode.com/albums/' + id)
-            const photosRes = await getJson('https://jsonplaceholder.typicode.com/photos')
-            const userRes = await getJson('https://jsonplaceholder.typicode.com/users/' + albumRes.userId)
+            const albumRes = await getJson(API_URL + '/albums/?id=' + id)
+            const photosRes = await getJson(API_URL + '/photos')
+            const userRes = await getJson(API_URL + '/users/?id=' + albumRes.userId)
 
             const albumPhotos = photosRes.filter(photo => {
                 return photo.albumId == id
@@ -49,7 +49,7 @@ function Album() {
         <main>
             {(Object.keys(album).length > 0 && Object.keys(user).length > 0) && (<div id="post-wrap">
                 <h3 id="post-title">{album.title} | Album has {photos.length} photos.</h3>
-                <a id="post-username" href={'./user?id=' + user.id}>By: {user.username}</a>
+                <Link id="post-username" to={'../user?id=' + user.id}>By: {user.username}</Link>
             </div>)}
             <h3 id="user-post-title">Album Photos</h3>
             {imageArr.length > 0 && (

@@ -1,11 +1,21 @@
 import React from 'react'
+import Users from '../Users/Users';
+import Posts from '../Posts/Posts';
+import Albums from '../Albums/Albums';
+
+import SearchLine from '../../Components/SearchLine/SearchLine';
 
 function Main() {
     return (
-        <main className="index-main">
-            <a className="main-button" href='/posts'>Posts</a>
-            <a className="main-button" href='/users'>Users</a>
-            <a className="main-button" href='/albums'>Albums</a>
+        <main>
+            <SearchLine />
+            <div className='main-page-half-wrap'>
+                <Posts />
+                <div>
+                    <Users />
+                    <Albums />
+                </div>
+            </div>
         </main>
     )
 }

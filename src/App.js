@@ -9,6 +9,8 @@ import Albums from './Pages/Albums/Albums';
 import Album from './Pages/Album/Album';
 import './style.css'
 import StickyMenu from './Components/StickyMenu/StickyMenu';
+import PostCreate from './Pages/PostCreate/PostCreate';
+import PostEdit from './Pages/PostEdit/PostEdit';
 
 function App() {
   return (
@@ -23,6 +25,8 @@ function App() {
         <Route path='/post' element={<Post />} />
         <Route path='/albums' element={<Albums />} />
         <Route path='/album' element={<Album />} />
+        <Route path='/posts/create' element={<PostCreate />} />
+        <Route path='/posts/edit/:id' element={<PostEdit />} />
         <Route path='*' element={
           <div>
             <h1>404: Page not found</h1>

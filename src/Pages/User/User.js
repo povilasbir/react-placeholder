@@ -3,6 +3,7 @@ import { getJson } from '../../Scripts/main_functions'
 import { useSearchParams } from 'react-router-dom'
 import profile from '../../Images/profile.webp'
 import PostsList from '../../Components/PostsList/PostsList'
+import { API_URL } from '../../Scripts/config'
 
 function User() {
 
@@ -15,9 +16,10 @@ function User() {
 
     useEffect(() => {
         async function temp() {
-            const userRes = await getJson('https://jsonplaceholder.typicode.com/users/' + id)
-            const postsRes = await getJson('https://jsonplaceholder.typicode.com/posts?_embed=comments')
-            const albumsRes = await getJson('https://jsonplaceholder.typicode.com/albums')
+
+            const userRes = await getJson(API_URL + '/users?id=' + id)
+            const postsRes = await getJson(API_URL + '/posts?_embed=comments')
+            const albumsRes = await getJson(API_URL + '/albums')
 
             const userPosts = postsRes.filter(post => {
                 return post.userId == id
@@ -27,7 +29,7 @@ function User() {
                 return album.userId == id
             })
 
-            setUser(userRes)
+            setUser(userRes[0])
             setPosts(userPosts)
             setAlbums(userAlbums)
         }

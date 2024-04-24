@@ -1,7 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import { getJson } from '../../Scripts/main_functions.js'
 import PostsList from '../../Components/PostsList/PostsList'
-import { useParams, useSearchParams } from "react-router-dom"
+import { Link, useParams, useSearchParams } from "react-router-dom"
+import { API_URL } from '../../Scripts/config.js'
 
 function Posts() {
 
@@ -11,16 +12,18 @@ function Posts() {
 
     useEffect(() => {
         async function temp() {
-            const resp = await getJson('https://jsonplaceholder.typicode.com/posts?_embed=comments')
+            // const resp = await getJson('https://jsonplaceholder.typicode.com/posts?_embed=comments')
+            const resPosts = await getJson(API_URL + '/posts?_embed=comments')
 
-            console.log(id)
+            let filteredPosts = []
 
             if (id) {
-                const fltResp = resp.filter(item => item.userId == id)
-                setPosts(fltResp)
+                filteredPosts = resPosts.filter(item => item.userId == id)
             } else {
-                setPosts(resp)
+                filteredPosts = resPosts
             }
+
+            setPosts(filteredPosts)
 
         }
 
@@ -29,10 +32,11 @@ function Posts() {
 
     return (
         <main>
+            <Link className='wide-button' to='/posts/create'>Create Post</Link>
             <div className="users-wrap" id="users-wrap">
                 {posts.length > 0 && (<PostsList posts={posts} />)}
             </div>
-        </main>
+        </main >
     )
 }
 

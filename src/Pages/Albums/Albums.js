@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { getJson } from '../../Scripts/main_functions.js'
+import { API_URL } from '../../Scripts/config.js'
 
 function Albums() {
 
@@ -8,8 +9,11 @@ function Albums() {
 
     useEffect(() => {
         async function temp() {
-            const albumsRes = await getJson('https://jsonplaceholder.typicode.com/albums')
-            const usersRes = await getJson('https://jsonplaceholder.typicode.com/users')
+            // const albumsRes = await getJson('https://jsonplaceholder.typicode.com/albums')
+            // const usersRes = await getJson('https://jsonplaceholder.typicode.com/users')
+
+            const albumsRes = await getJson('http://localhost:3000/albums')
+            const usersRes = await getJson('http://localhost:3000/users')
 
             setAlbums(albumsRes)
             setUsers(usersRes)
