@@ -51,6 +51,7 @@ function Album() {
                 <h3 id="post-title">{album.title} | Album has {photos.length} photos.</h3>
                 <Link id="post-username" to={'../user?id=' + user.id}>By: {user.username}</Link>
             </div>)}
+            <Link to={'/albums/delete/' + id}> | Delete Album |</Link>
             <h3 id="user-post-title">Album Photos</h3>
             {imageArr.length > 0 && (
                 <div className='gallery-container'>

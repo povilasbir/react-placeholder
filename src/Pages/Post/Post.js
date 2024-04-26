@@ -3,6 +3,7 @@ import { getJson } from '../../Scripts/main_functions'
 import { useSearchParams } from 'react-router-dom'
 import { API_URL } from '../../Scripts/config'
 import { Link, Route, Routes } from 'react-router-dom'
+import Comment from '../../Components/Comment/Comment'
 
 function Post() {
 
@@ -40,6 +41,8 @@ function Post() {
                 <p id="post-content">{post.body}</p>
                 <a href={'./posts?id=' + user.id}>Other user posts</a>
                 <Link to={'/posts/edit/' + post.id}> | Edit Post |</Link>
+                <Link to={'/posts/delete/' + post.id}> | Delete Post |</Link>
+                <Link to={'/comment/create/' + post.id}> | Comment |</Link>
             </div>)}
             <h3 id="user-post-title">Post Comments</h3>
             <div className="users-wrap" id="user-posts-wrap">
@@ -56,11 +59,13 @@ function Post() {
                 </div>
                 {(comments.length > 0 && user && Object.keys(user).length > 0) ?
                     (
-                        comments.map((item, index) => <a key={index} className='table-line' href={'./user?id=' + user.id}>
-                            <span className='user-list-span'>{item.name}</span>
-                            <span className='user-list-span'>{item.body}</span>
-                            <span className='user-list-span'>{item.email}</span>
-                        </a>)
+                        // comments.map((item, index) => <a key={index} className='table-line' href={'./user?id=' + user.id}>
+                        //     <span className='user-list-span'>{item.name}</span>
+                        //     <span className='user-list-span'>{item.body}</span>
+                        //     <span className='user-list-span'>{item.email}</span>
+                        // </a>)
+
+                        comments.map((item, index) => <Comment key={index} item={item} />)
                     )
                     : (<h2>Loading...</h2>)}
             </div>

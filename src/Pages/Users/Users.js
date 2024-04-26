@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import { getJson } from '../../Scripts/main_functions.js'
 import { API_URL } from '../../Scripts/config.js'
+import { Link, useParams, useSearchParams } from "react-router-dom"
 
 function Users() {
 
@@ -18,6 +19,7 @@ function Users() {
 
     return (
         <main>
+            <Link className='wide-button' to='/users/create'>Create User</Link>
             <div className="users-wrap" id="users-wrap">
                 <div className="table-line title-line">
                     <span className="user-list-span">

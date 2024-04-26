@@ -1,6 +1,5 @@
 import { React, useState, useEffect } from 'react'
 import { getJson } from '../../Scripts/main_functions'
-import { useSearchParams } from 'react-router-dom'
 import { API_URL } from '../../Scripts/config'
 
 function PostCreate({ id }) {

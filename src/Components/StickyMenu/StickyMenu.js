@@ -18,6 +18,9 @@ function StickyMenu() {
                     <li>
                         <NavLink to="/albums">Albums</NavLink>
                     </li>
+                    <li>
+                        <NavLink to="/categories">Categories</NavLink>
+                    </li>
                 </ul>
             </nav>
         </div>

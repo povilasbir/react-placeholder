@@ -4,6 +4,7 @@ import { useSearchParams } from 'react-router-dom'
 import profile from '../../Images/profile.webp'
 import PostsList from '../../Components/PostsList/PostsList'
 import { API_URL } from '../../Scripts/config'
+import { Link, Route, Routes } from 'react-router-dom'
 
 function User() {
 
@@ -81,6 +82,8 @@ function User() {
                             </li>
                         </ul>
                     </div>
+                    <Link to={'/users/delete/' + user.id}> | Delete User |</Link>
+                    <Link to={'/users/edit/' + user.id}> | Edit User |</Link>
                 </div>)}
                 <img src={profile} alt="Profile Image" className="profile-img" />
             </div>
